@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Habit Maker</string>
+    <string name="welcome">Welcome to Habit Maker!</string>
+    <string name="nav_explain">Use the buttons below to navigate to different pages</string>
+    <string name="tasks_nav_str">Tasks</string>
+    <string name="calendar_nav_str">Calendar</string>
+    <string name="task_creation_nav_str">Task Creation</string>
+    <string name="stats_nav_str">Statistics</string>
 </resources>

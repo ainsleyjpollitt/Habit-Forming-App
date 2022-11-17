@@ -7,12 +7,73 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="68dp"
+        android:text="@string/welcome"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/tasksNavButton"
+        android:layout_width="125dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="launchTasks"
+        android:text="@string/tasks_nav_str"
+        app:layout_constraintBottom_toTopOf="@+id/calendarNavButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/calendarNavButton"
+        android:layout_width="125dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="launchCalendar"
+        android:text="@string/calendar_nav_str"
+        app:layout_constraintBottom_toTopOf="@+id/taskCreationNavButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/taskCreationNavButton"
+        android:layout_width="125dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="launchTaskCreation"
+        android:text="@string/task_creation_nav_str"
+        app:layout_constraintBottom_toTopOf="@+id/statsNavButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/statsNavButton"
+        android:layout_width="125dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="160dp"
+        android:onClick="launchStats"
+        android:text="@string/stats_nav_str"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/navExplText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/nav_explain"
+        app:layout_constraintBottom_toTopOf="@+id/tasksNavButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+        tools:text="@string/nav_explain" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
