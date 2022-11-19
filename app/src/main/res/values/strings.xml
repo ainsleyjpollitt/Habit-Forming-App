@@ -7,4 +7,5 @@
     <string name="task_creation_nav_str">Task Creation</string>
     <string name="stats_nav_str">Statistics</string>
     <string name="enter_task_name">Task name:</string>
+    <string name="tasks_info_nav_str">Task Details</string>
 </resources>

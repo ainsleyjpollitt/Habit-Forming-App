@@ -30,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void launchTaskInfo(View v) {
+        Intent i = new Intent(this, TaskInfoActivity.class);
+        startActivity(i);
+    }
+
     public void launchStats(View v) {
         Intent i = new Intent(this, StatisticsActivity.class);
         startActivity(i);
