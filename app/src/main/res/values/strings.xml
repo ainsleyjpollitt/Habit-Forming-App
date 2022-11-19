@@ -8,4 +8,17 @@
     <string name="stats_nav_str">Statistics</string>
     <string name="enter_task_name">Task name:</string>
     <string name="tasks_info_nav_str">Task Details</string>
+    <string name="create_new_task_str">CREATE NEW TASK</string>
+    <string name="enter_task_interval">Task interval:</string>
+    <string name="enter_task_day">Task day:</string>
+    <string name="enter_task_time">Task time:</string>
+    <string-array name="intervals">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="time_button">SELECT TASK TIME</string>
+    <string name="day_button">SELECT TASK DAY</string>
 </resources>
