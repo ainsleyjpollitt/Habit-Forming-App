@@ -2,6 +2,7 @@ package com.example.habitformingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -16,16 +17,24 @@ public class TasksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
-
-        ArrayList<String> list = new ArrayList<String>();
+        ListView list = findViewById(R.id.currentTasks);
         ArrayAdapter<String> adapter;
+        ArrayList<String> arrayList = new ArrayList<>();
+        adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.activity_listview, arrayList);
 
+        list.setAdapter(adapter);
 
-        Intent i = getIntent();
+        arrayList.clear();
+
+        for (String i : file.files) {
+            arrayList.add(i);
+        }
+        adapter.notifyDataSetChanged();
+
         /*
         String taskName = i.getStringExtra("TASK_NAME");
         if(taskName != null) {
-            ((ListView) findViewById(R.id.currentTasks)).setText(taskName);
+            ((ListView) findViewById(R.id.currentTasks)).setText(taskName);You must supply a resource ID for a TextView
         }
 
         /*

@@ -17,6 +17,8 @@ import android.view.View.OnKeyListener;
 import android.view.View;
 import android.view.KeyEvent;
 
+import java.io.IOException;
+
 public class TaskCreationActivity extends AppCompatActivity {
 
     @Override
@@ -51,21 +53,18 @@ public class TaskCreationActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    public void createNewTask(View v) {
+    public void createNewTask(View v) throws IOException {
+        String taskName = ((EditText)findViewById(R.id.editTaskName)).getText().toString();
+        String taskDay = findViewById(R.id.enterTaskDay).toString();
+        String taskInterval = findViewById(R.id.editTaskInterval).toString();
+        String taskTime = findViewById(R.id.editTaskTime).toString();
+        file.write(taskName, taskDay, taskTime, taskInterval, this);
+
         Intent i = new Intent(this, TasksActivity.class);
-        String taskName = ((EditText)v).getText().toString();
-        i.putExtra("TASK_NAME", taskName);
-
-        String taskInterval = ((SpinnerAdapter)v).toString();
-        i.putExtra("TASK_INTERVAL", taskInterval);
-
-        String taskDay = ((Button)v).getText().toString();
-        i.putExtra("TASK_DAY", taskDay);
-
-        String taskTime = ((Button)v).getText().toString();
-        i.putExtra("TASK_TIME", taskTime);
-
         startActivity(i);
+
+
+
     }
 
 }
