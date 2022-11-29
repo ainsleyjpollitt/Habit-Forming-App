@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,32 +29,17 @@ public class TasksActivity extends AppCompatActivity {
         list.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        /*
-        String taskName = i.getStringExtra("TASK_NAME");
-        if(taskName != null) {
-            ((ListView) findViewById(R.id.currentTasks)).setText(taskName);You must supply a resource ID for a TextView
-        }
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
+                launchTaskInfo(list);
+            }
+        });
 
-        /*
-
-
-        String taskInterval = i.getStringExtra("TASK_INTERVAL");
-        String taskDay = i.getStringExtra("TASK_DAY");
-        String taskTime = i.getStringExtra("TASK_TIME");
-
-
-        if(taskInterval != null) {
-            ((TextView) findViewById(R.id.currentTasks)).setText(taskInterval);
-        }
-        if(taskDay != null) {
-            ((TextView) findViewById(R.id.currentTasks)).setText(taskDay);
-        }
-        if(taskTime != null) {
-            ((TextView) findViewById(R.id.currentTasks)).setText(taskTime);
-        }
-
-        */
     }
 
+    public void launchTaskInfo(View v) {
+        Intent i = new Intent(this, TaskInfoActivity.class);
+        startActivity(i);
+    }
 
 }

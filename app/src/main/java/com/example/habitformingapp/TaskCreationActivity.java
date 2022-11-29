@@ -62,9 +62,6 @@ public class TaskCreationActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, TasksActivity.class);
         startActivity(i);
-
-
-
     }
 
 }

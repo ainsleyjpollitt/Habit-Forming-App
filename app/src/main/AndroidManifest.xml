@@ -18,7 +18,7 @@
             android:name=".TaskInfoActivity"
             android:exported="false"
             android:label="Task Details"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".TasksActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
