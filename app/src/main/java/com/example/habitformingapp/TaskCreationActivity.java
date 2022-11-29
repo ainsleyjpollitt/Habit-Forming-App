@@ -29,18 +29,6 @@ public class TaskCreationActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.intervals, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerTaskInterval.setAdapter(adapter);
-        /*
-        findViewById(R.id.editTaskName).setOnKeyListener(new OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent keyevent) {
-                if ((keyevent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    enterNewTaskName(v);
-                    return true;
-                }
-                return false;
-            }
-        });
-
-         */
     }
 
     public void showTimePickerDialog(View v) {

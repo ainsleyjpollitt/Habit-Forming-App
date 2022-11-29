@@ -31,7 +31,7 @@ public class file {
 
     /* Get the list of file names that each represent
        a task to display on the Tasks page.
-       Use this over files property.
+       Use this over files property directly.
     */
     public static ArrayList<String> getFiles(){
         ArrayList<String> taskList =  new ArrayList<>();
