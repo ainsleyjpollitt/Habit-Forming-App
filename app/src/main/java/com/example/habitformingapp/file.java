@@ -1,13 +1,11 @@
 package com.example.habitformingapp;
 
 import android.content.Context;
+import android.util.Log;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class file {
@@ -29,5 +27,19 @@ public class file {
 
             e.printStackTrace();
         }
+    }
+
+    /* Get the list of file names that each represent
+       a task to display on the Tasks page.
+       Use this over files property.
+    */
+    public static ArrayList<String> getFiles(){
+        ArrayList<String> taskList =  new ArrayList<>();
+        File[] files = directory.listFiles();
+        for (int i = 0; i < files.length; i++)
+        {
+            taskList.add(files[i].getName());
+        }
+        return taskList;
     }
 }

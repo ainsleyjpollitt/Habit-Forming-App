@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class TasksActivity extends AppCompatActivity {
@@ -19,16 +21,10 @@ public class TasksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tasks);
         ListView list = findViewById(R.id.currentTasks);
         ArrayAdapter<String> adapter;
-        ArrayList<String> arrayList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.activity_listview, arrayList);
+        ArrayList<String> taskList = file.getFiles();
+        adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.activity_listview, taskList);
 
         list.setAdapter(adapter);
-
-        arrayList.clear();
-
-        for (String i : file.files) {
-            arrayList.add(i);
-        }
         adapter.notifyDataSetChanged();
 
         /*
