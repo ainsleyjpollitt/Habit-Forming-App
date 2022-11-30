@@ -7,7 +7,7 @@
     tools:context=".TaskCreationActivity">
 
     <Button
-        android:id="@+id/editTaskTime2"
+        android:id="@+id/editTaskDay"
         android:layout_width="159dp"
         android:layout_height="68dp"
         android:layout_marginTop="64dp"
@@ -43,7 +43,7 @@
         android:layout_marginEnd="16dp"
         android:text="@string/enter_task_day"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editTaskTime2"
+        app:layout_constraintEnd_toStartOf="@+id/editTaskDay"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

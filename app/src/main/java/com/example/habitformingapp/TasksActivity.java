@@ -61,12 +61,12 @@ public class TasksActivity extends AppCompatActivity {
         try {
             reader = new FileReader(currentTaskFile);
             reader.read();
-            while ((next = reader.read()) != ' ') { // get name
+            while ((next = reader.read()) != ',') { // get name
                 word.append((char) next);
             }
             taskName = word.toString();
             //word = new StringBuilder();
-            word.append((char) next);
+            //word.append((char) next);
 
             /*
             while ((next = reader.read()) != ' ') { // get time
@@ -92,7 +92,7 @@ public class TasksActivity extends AppCompatActivity {
             taskInterval = word.toString();
             word = new StringBuilder();
             word.append((char) next);
-            */
+           */
         } catch (Exception e) {
             e.printStackTrace();
         }

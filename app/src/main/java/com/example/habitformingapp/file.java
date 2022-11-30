@@ -17,7 +17,7 @@ public class file {
         File task = new File(directory, name);
         FileWriter writer = new FileWriter(task);
 
-        writer.append(name + " " + time + " " + date + " " + taskInterval);
+        writer.append(" " + name + ", " + time + ", " + date + ", " + taskInterval);
         writer.flush();
         writer.close();
 
