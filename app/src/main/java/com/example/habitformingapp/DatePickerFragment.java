@@ -19,6 +19,8 @@ import java.util.Date;
 public class DatePickerFragment extends DialogFragment
         implements DatePickerDialog.OnDateSetListener {
 
+
+
     private DatePickerFragmentListener listener;
 
     public interface DatePickerFragmentListener {
@@ -43,6 +45,7 @@ public class DatePickerFragment extends DialogFragment
 
     @Override
     public void onDateSet(DatePicker view, int inputYear, int inputMonth, int inputDay) {
+        /*
         //Read the passed bundle from the activity
         Bundle setDate = this.getArguments();
         long currDate = 0;
@@ -53,13 +56,16 @@ public class DatePickerFragment extends DialogFragment
         } else {
             Log.i("Other test tag", "null");
         }
+
+         */
         final Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(currDate);
+        //c.setTimeInMillis(currDate);
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
         c.set(inputYear, inputMonth, inputDay, 0, 0);
-        Date formattedDate = c.getTime();
+        Log.i("Test tag", c.toString());
+        //Date formattedDate = c.getTime();
         notifyDatePickerListener(view, year, month, day);
     }
 

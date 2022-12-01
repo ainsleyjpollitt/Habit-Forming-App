@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class TaskInfoActivity extends AppCompatActivity {
 
@@ -14,6 +18,17 @@ public class TaskInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_info);
         Intent i = getIntent();
         displayTaskDetails(i);
+
+        Switch toggle = findViewById(R.id.toggleComplete);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) { // enabled
+                    markTaskComplete(toggle);
+                } else { // disabled
+                    markTaskIncomplete(toggle);
+                }
+            }
+        });
     }
 
     /* Print out the stored information on a task such
@@ -48,5 +63,21 @@ public class TaskInfoActivity extends AppCompatActivity {
         } else {
             ((TextView) findViewById(R.id.displayTaskDay)).setText(taskDate);
         }
+    }
+
+    public void deleteTask(View v) {
+
+    }
+
+    public void editTask(View v) {
+
+    }
+
+    public void markTaskComplete(View v) {
+
+    }
+
+    public void markTaskIncomplete(View v) {
+
     }
 }

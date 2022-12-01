@@ -61,7 +61,7 @@ public class TasksActivity extends AppCompatActivity {
         try {
             reader = new FileReader(currentTaskFile);
             reader.read();
-            while ((next = reader.read()) != -1) { // get name
+            while ((next = reader.read()) != ',') { // get name
                 word.append((char) next);
             }
             taskName = word.toString();
