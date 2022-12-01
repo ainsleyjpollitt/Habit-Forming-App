@@ -22,7 +22,7 @@ public class DatePickerFragment extends DialogFragment
     private DatePickerFragmentListener listener;
 
     public interface DatePickerFragmentListener {
-        void onDatePicked(Date date);
+        void onDateSet(DatePicker view, int inputYear, int inputMonth, int inputDay);
     }
 
     public static DatePickerFragment newInstance(DatePickerFragmentListener listener) {
@@ -41,11 +41,26 @@ public class DatePickerFragment extends DialogFragment
         return new DatePickerDialog(requireContext(), this, year, month, day);
     }
 
-    public void onDateSet(DatePicker view, int year, int month, int day) {
-        Calendar c = Calendar.getInstance();
-        c.set(year, month, day, 0, 0);
+    @Override
+    public void onDateSet(DatePicker view, int inputYear, int inputMonth, int inputDay) {
+        //Read the passed bundle from the activity
+        Bundle setDate = this.getArguments();
+        long currDate = 0;
+        if(setDate != null) {
+            currDate = setDate.getLong("setDate");
+            String contents = setDate.toString();
+            Log.i("Test tag", contents);
+        } else {
+            Log.i("Other test tag", "null");
+        }
+        final Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(currDate);
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        c.set(inputYear, inputMonth, inputDay, 0, 0);
         Date formattedDate = c.getTime();
-        notifyDatePickerListener(formattedDate);
+        notifyDatePickerListener(view, year, month, day);
     }
 
     public DatePickerFragmentListener getDatePickerListener() {
@@ -56,9 +71,9 @@ public class DatePickerFragment extends DialogFragment
         this.listener = listener;
     }
 
-    protected void notifyDatePickerListener(Date date) {
+    protected void notifyDatePickerListener(DatePicker view, int inputYear, int inputMonth, int inputDay) {
         if(this.listener != null) {
-            this.listener.onDatePicked(date);
+            this.listener.onDateSet(view, inputYear, inputMonth, inputDay);
         }
     }
 
