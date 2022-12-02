@@ -4,11 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
 
 public class TaskInfoActivity extends AppCompatActivity {
 
@@ -19,13 +24,13 @@ public class TaskInfoActivity extends AppCompatActivity {
         Intent i = getIntent();
         displayTaskDetails(i);
 
-        Switch toggle = findViewById(R.id.toggleComplete);
+        Switch toggle = (Switch) findViewById(R.id.toggleComplete);
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) { // enabled
-                    markTaskComplete(toggle);
+                    toggleTask(i, isChecked);
                 } else { // disabled
-                    markTaskIncomplete(toggle);
+                    toggleTask(i, isChecked);
                 }
             }
         });
@@ -65,19 +70,32 @@ public class TaskInfoActivity extends AppCompatActivity {
         }
     }
 
+    /* Remove a task permanently from storage.
+    */
     public void deleteTask(View v) {
 
     }
 
+    /* Changed the saved details about
+       a task in storage.
+    */
     public void editTask(View v) {
 
     }
 
-    public void markTaskComplete(View v) {
-
+    /* Set up the color of the list item on the Task page
+       to change when a task is marked complete or
+       incomplete.
+    */
+    public void toggleTask(Intent i, boolean isChecked) {
+        String taskName = i.getStringExtra("NAME");
+        ArrayList<String> taskList = i.getStringArrayListExtra("TASK LIST");
+        Intent intent = new Intent(this, TasksActivity.class);
+        intent.putExtra("Task file", taskName);
+        intent.putExtra("Is Checked", isChecked);
+        intent.putStringArrayListExtra("TASK LIST", taskList);
+        //startActivity(intent);
     }
 
-    public void markTaskIncomplete(View v) {
 
-    }
 }

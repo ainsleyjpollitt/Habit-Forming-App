@@ -3,7 +3,9 @@ package com.example.habitformingapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,7 +25,15 @@ public class TasksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tasks);
         ListView list = findViewById(R.id.currentTasks);
         ArrayAdapter<String> adapter;
-        ArrayList<String> taskList = file.getFiles();
+        Intent i = getIntent();
+        ArrayList<String> taskList;
+        if(getIntent().getExtras() != null) { // if there hasn't been an intent call from Task Details
+            taskList = i.getStringArrayListExtra("TASK LIST");
+            changeListItemColor(i, taskList, list);
+        } else {
+            //Log.i("tag", "went into else block");
+            taskList = file.getFiles();
+        }
         adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.activity_listview, taskList);
 
         list.setAdapter(adapter);
@@ -35,6 +45,26 @@ public class TasksActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    /* Changes the color of an item in the task
+       list based on if it was marked complete or
+       incomplete.
+    */
+    public void changeListItemColor(Intent i, ArrayList<String> taskList, ListView list) {
+        Bundle bundle = getIntent().getExtras();
+        String file = i.getStringExtra("File name");
+        boolean isChecked = bundle.getBoolean("Is Checked");
+        for(int j = 0; j < taskList.size(); j++) {
+            if(file.equals(taskList.get(j))) {
+                View listItem = list.getChildAt(j);
+                if(isChecked) {
+                    listItem.setBackgroundColor(Color.GREEN);
+                } else {
+                    listItem.setBackgroundColor(Color.WHITE);
+                }
+            }
+        }
     }
 
     /* Launch to the Task Details page to display
@@ -61,38 +91,17 @@ public class TasksActivity extends AppCompatActivity {
         try {
             reader = new FileReader(currentTaskFile);
             reader.read();
-            while ((next = reader.read()) != ',') { // get name
-                word.append((char) next);
-            }
-            taskName = word.toString();
-            //word = new StringBuilder();
-            //word.append((char) next);
-
-            /*
-            while ((next = reader.read()) != ' ') { // get time
+            while ((next = reader.read()) != -1) { // get name
                 word.append((char) next);
             }
 
-            taskTime = word.toString();
-            word = new StringBuilder();
-            word.append((char) next);
+            String[] storedFileData = word.toString().split(",");
 
-            while ((next = reader.read()) != ' ') { // get date
-                word.append((char) next);
-            }
+            taskName = storedFileData[0];
+            taskInterval = storedFileData[storedFileData.length - 1];
+            //taskTime = storedFileData[];
+            //taskDate = storedFileData[];
 
-            taskDate = word.toString();
-            word = new StringBuilder();
-            word.append((char) next);
-
-            while ((next = reader.read()) != ' ') { // get interval
-                word.append((char) next);
-            }
-
-            taskInterval = word.toString();
-            word = new StringBuilder();
-            word.append((char) next);
-           */
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,20 +110,9 @@ public class TasksActivity extends AppCompatActivity {
         i.putExtra("TIME", taskTime);
         i.putExtra("DATE", taskDate);
         i.putExtra("INTERVAL", taskInterval);
+        ArrayList<String> taskList = file.getFiles();
+        i.putStringArrayListExtra("TASK LIST", taskList);
 
         startActivity(i);
     }
-
-
-
-    /*
-    private static String getTaskDetail(FileReader reader, StringBuilder word, int next,
-                                        String detail) {
-        return detail;
-
-    }
-
-    */
-
-
 }
