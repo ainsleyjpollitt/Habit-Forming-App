@@ -2,6 +2,9 @@ package com.example.habitformingapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -73,7 +76,32 @@ public class TaskInfoActivity extends AppCompatActivity {
     /* Remove a task permanently from storage.
     */
     public void deleteTask(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle("Are you sure you want to delete this task?");
+        builder.setMessage("Click confirm to proceed and permanently delete this task.");
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        removeTaskFromStorage();
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
 
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    /* Goes into storage to remove a task that
+       has been selected by the user for deletion.
+    */
+    private void removeTaskFromStorage() {
+        Log.i("Removing", "Gonna remove");
     }
 
     /* Changed the saved details about
