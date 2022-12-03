@@ -16,6 +16,8 @@ import android.widget.Spinner;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TaskCreationActivity extends AppCompatActivity implements DatePickerFragment.DatePickerFragmentListener {
     Spinner spinnerTaskInterval;
@@ -70,6 +72,10 @@ public class TaskCreationActivity extends AppCompatActivity implements DatePicke
         String taskTime = findViewById(R.id.editTaskTime).toString();
         ArrayList<String> taskList = file.getFiles();
 
+        Pattern p = Pattern.compile("^[ A-Za-z]+$");
+        Matcher m = p.matcher(taskName);
+        boolean isValidTaskName = m.matches();
+
         if(taskList.contains(taskName)) { // make sure a duplicate task is not being created
             Log.i("tag", "Entered if statement.");
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -77,6 +83,23 @@ public class TaskCreationActivity extends AppCompatActivity implements DatePicke
             builder.setTitle("Can't create task.");
             builder.setMessage("It looks like a task with the name \"" + taskName + "\" already exists. " +
                                "Try another task name.");
+            builder.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        } else if(!isValidTaskName) { // make sure that task name only contains letter and spaces
+            Log.i("tag", "Entered else if statement.");
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setTitle("Can't create task.");
+            builder.setMessage("It looks like you tried to create a task with an invalid name. " +
+                    "Use only letters and spaces to create your task name.");
             builder.setPositiveButton("OK",
                     new DialogInterface.OnClickListener() {
                         @Override
