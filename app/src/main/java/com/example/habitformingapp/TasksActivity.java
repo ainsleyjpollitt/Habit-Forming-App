@@ -31,7 +31,6 @@ public class TasksActivity extends AppCompatActivity {
             taskList = i.getStringArrayListExtra("TASK LIST");
             changeListItemColor(i, taskList, list);
         } else {
-            //Log.i("tag", "went into else block");
             taskList = file.getFiles();
         }
         adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.activity_listview, taskList);
