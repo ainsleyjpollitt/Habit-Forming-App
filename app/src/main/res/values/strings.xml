@@ -24,4 +24,6 @@
     <string name="toggle_text">Toggle task complete/incomplete</string>
     <string name="edit_task_button">Edit Task Details</string>
     <string name="delete_task_button">Delete Task</string>
+    <string name="task_complete">Task is complete</string>
+    <string name="task_incomplete">Task is incomplete</string>
 </resources>

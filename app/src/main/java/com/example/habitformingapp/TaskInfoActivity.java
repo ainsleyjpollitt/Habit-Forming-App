@@ -31,9 +31,11 @@ public class TaskInfoActivity extends AppCompatActivity {
         toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) { // enabled
-                    toggleTask(i, isChecked);
+                    //toggleTask(i, isChecked);
+                    toggle.setText("Task is complete.");
                 } else { // disabled
-                    toggleTask(i, isChecked);
+                    //toggleTask(i, isChecked);
+                    toggle.setText("Task is incomplete.");
                 }
             }
         });

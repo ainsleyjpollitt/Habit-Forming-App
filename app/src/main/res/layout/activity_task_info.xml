@@ -109,6 +109,8 @@
         android:layout_height="106dp"
         android:checked="false"
         android:text="@string/toggle_text"
+        android:textOff="@string/task_incomplete"
+        android:textOn="@string/task_complete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
