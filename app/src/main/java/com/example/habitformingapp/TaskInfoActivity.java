@@ -104,6 +104,18 @@ public class TaskInfoActivity extends AppCompatActivity {
     */
     private void removeTaskFromStorage() {
         Log.i("Removing", "Gonna remove");
+        Intent i = getIntent();
+        String taskName = i.getStringExtra("NAME");
+        if(taskName == null) {
+            ((TextView) findViewById(R.id.displayTaskName)).setText("No task name recorded.");
+        } else {
+            ((TextView) findViewById(R.id.displayTaskName)).setText(taskName);
+        }
+        ArrayList<String> taskList = file.getFiles();
+        if(taskList.contains(taskName)) {
+            file.deleteFile(taskName);
+        }
+        Log.i("Finished", "At end of removal");
     }
 
     /* Changed the saved details about

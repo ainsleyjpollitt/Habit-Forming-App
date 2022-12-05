@@ -77,7 +77,6 @@ public class TaskCreationActivity extends AppCompatActivity implements DatePicke
         boolean isValidTaskName = m.matches();
 
         if(taskList.contains(taskName)) { // make sure a duplicate task is not being created
-            Log.i("tag", "Entered if statement.");
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Can't create task.");
@@ -94,7 +93,6 @@ public class TaskCreationActivity extends AppCompatActivity implements DatePicke
             dialog.show();
 
         } else if(!isValidTaskName) { // make sure that task name only contains letter and spaces
-            Log.i("tag", "Entered else if statement.");
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Can't create task.");
@@ -109,7 +107,7 @@ public class TaskCreationActivity extends AppCompatActivity implements DatePicke
 
             AlertDialog dialog = builder.create();
             dialog.show();
-        } else {
+        } else { // entered task information is acceptable, proceed with creation
             file.write(taskName, taskDay, taskTime, taskInterval, this);
 
             Intent i = new Intent(this, TasksActivity.class);

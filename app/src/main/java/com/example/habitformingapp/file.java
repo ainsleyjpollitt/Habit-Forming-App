@@ -1,11 +1,13 @@
 package com.example.habitformingapp;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class file {
@@ -41,5 +43,42 @@ public class file {
             taskList.add(files[i].getName());
         }
         return taskList;
+    }
+
+    /* Delete the given file from the directory to
+       permanently remove it from storage.
+    */
+    public static void deleteFile(String fileName) {
+        /*
+        File[] files = directory.listFiles();
+        String[] fileNames = directory.list();
+        File foundFile = null;
+        for(int i = 0; i < fileNames.length; i++) {
+            if(fileNames[i].equals(fileName)) {
+                foundFile = files[i];
+                break;
+            }
+        }
+
+        if(foundFile != null) {
+            String filePath = foundFile.getAbsolutePath();
+            Path path = directory.getAbsolutePath(filePath);
+        }
+        */
+        /*
+        File currentFile;
+        if(files != null) {
+            currentFile = files[0];
+            int pos = 1;
+            while(!currentFile.toString().equals(fileName)) {
+                currentFile = files[pos];
+                if(currentFile.toString().equals(fileName)) {
+                    directory.getName(currentFile).delete();
+                }
+            }
+        }
+        */
+
+
     }
 }
